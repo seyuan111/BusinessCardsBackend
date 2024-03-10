@@ -15,21 +15,27 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(error => console.log(error.message));
 
 const userSchema = mongoose.Schema({
-    name: String,
-    age: String,
-    email: String,
+    name: {type: String, required: true},
+    age: Number,
+    email: {type: String, required: true},
     occupation: String,
-    contact: String
+    contact: String,
+},
+{
+    timestamps: true
 })
 
 const User = mongoose.model("User", userSchema)
 
 const businessCardSchema = mongoose.Schema({
     name: {type: String, required: true},
-    age: {type: String, required: true},
+    age: {type: Number, required: true},
     email: {type: String, required: true},
     occupation: String,
     contact: String
+},
+{
+    timestamps: true
 })
 
 const Business = mongoose.model("Business", businessCardSchema)
