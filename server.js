@@ -16,7 +16,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 const userSchema = mongoose.Schema({
     name: {type: String, required: true},
-    age: Number,
     email: {type: String, required: true},
     occupation: String,
     contact: String,
@@ -29,7 +28,6 @@ const User = mongoose.model("User", userSchema)
 
 const businessCardSchema = mongoose.Schema({
     name: {type: String, required: true},
-    age: {type: Number, required: true},
     email: {type: String, required: true},
     occupation: String,
     contact: String
@@ -49,7 +47,6 @@ app.post('/cards', async (req,res) => {
     try {
         if(
             !req.body.name ||
-            !req.body.age ||
             !req.body.email ||
             !req.body.occupation ||
             !req.body.contact
@@ -60,7 +57,6 @@ app.post('/cards', async (req,res) => {
         }
         const newUser = {
             name: req.body.name,
-            age: req.body.age,
             email: req.body.email,
             occupation: req.body.occupation,
             contact: req.body.contact
@@ -110,7 +106,6 @@ app.put("/cards/:id", async (req,res) => {
     try{
         if(
             !req.body.name ||
-            !req.body.age ||
             !req.body.email ||
             !req.body.occupation ||
             !req.body.contact
